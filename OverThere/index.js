@@ -10,7 +10,7 @@ module.exports = async function (context, req) {
   const responseMessage = `<p>You are being <a href="${targetUrl}">redirected</a></p>\n`
 
   context.res = {
-    status: 308,
+    status: 302,
     headers: {"Location": targetUrl},
     body: responseMessage
   };
