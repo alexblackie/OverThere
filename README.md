@@ -16,9 +16,8 @@ You'll need all the basics set up before anything else:
 
 ### Deploying the Function
 
-Once we have all the accounts and whatnot, we can create a function app. This
-function will take over the whole hostname, so if you have multiple functions
-to deploy, it's probably best to dedicated the entire App just for this.
+Once you have an Azure Storage Account set up, you can create a function app
+for each domain you want to redirect.
 
 ```
 $ az functionapp create \
@@ -32,8 +31,8 @@ $ az functionapp create \
     --storage-account MyStorageAccountName
 ```
 
-Then you can deploy the zip file provided in the tagged releases on Github, or
-create a zip of the repo contents yourself (see the `bin/release` script):
+Then download the latest version from the [Github releases][releases], and
+deploy it:
 
 ```
 $ az functionapp deployment source config-zip \
@@ -42,8 +41,8 @@ $ az functionapp deployment source config-zip \
     --src overthere-1.0.0.zip
 ```
 
-Finally, set `TARGET_HOSTNAME` in the App Settings to where we want the
-function to redirect requests:
+Finally, set `TARGET_HOSTNAME` in the App Settings to the target domain we want
+this app to redirect to.
 
 ```
 $ az functionapp config appsettings set \
@@ -51,6 +50,8 @@ $ az functionapp config appsettings set \
     --resource-group MyResourceGroupName \
     --settings "TARGET_HOSTNAME=www.example.com"
 ```
+
+[releases]: https://github.com/alexblackie/OverThere/releases
 
 ### A Note on TLS and Domains
 
