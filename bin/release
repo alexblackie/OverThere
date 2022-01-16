@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euf -o pipefail
+
+# Release script
+# --------------
+#
+# Handles generating a zip file suitable for "zip-based deployment", the
+# recommended deployment method for Azure Functions.
+#
+# Takes one optional argument, the version of the release.
+#
+# Example:
+#
+#     ./bin/release 1.0.10
+#     # (Generates overthere-1.0.10.zip)
+
+version="${1:-SNAPSHOT}"
+zip -r "overthere-$version.zip" OverThere/ package.json package-lock.json host.json

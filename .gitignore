@@ -1,4 +1,3 @@
-bin
 obj
 csx
 .vs
@@ -41,3 +40,6 @@ venv.bak/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Ignore release zipfiles
+overthere*.zip
