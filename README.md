@@ -32,10 +32,14 @@ $ az functionapp create \
     --storage-account MyStorageAccountName
 ```
 
-And then you can deploy this function to it:
+Then you can deploy the zip file provided in the tagged releases on Github, or
+create a zip of the repo contents yourself (see the `bin/release` script):
 
 ```
-$ func azure functionapp publish MyFunctionAppName
+$ az functionapp deployment source config-zip \
+    -g MyResourceGroupName \
+    -n MyFunctionAppName \
+    --src overthere-1.0.0.zip
 ```
 
 Finally, set `TARGET_HOSTNAME` in the App Settings to where we want the
